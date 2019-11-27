@@ -1,0 +1,55 @@
+{
+  "name": "nodejs-typescript-graphql",
+  "version": "1.0.0",
+  "description": "GraphQL with Node.js in Typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf build",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "lint:fix": "yarn lint && yarn lint --fix",
+    "start": "nodemon --exec ts-node --files src/server.ts",
+    "prebuild": "yarn clean",
+    "build": "tsc",
+    "serve": "node ./build/server.js"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "yarn lint:fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puncoz/nodejs-graphql-typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/puncoz/nodejs-graphql-typescript/issues"
+  },
+  "homepage": "https://github.com/puncoz/nodejs-graphql-typescript#readme",
+  "devDependencies": {
+    "@types/ws": "^6.0.3",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.4.3",
+    "nodemon": "^2.0.1",
+    "rimraf": "^3.0.0",
+    "ts-node": "^8.5.2",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "class-validator": "^0.11.0",
+    "dotenv": "^8.2.0",
+    "graphql-yoga": "^1.18.3",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^0.17.5"
+  }
+}
